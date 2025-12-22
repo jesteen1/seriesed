@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "mongodb": "^6.21.0",
-    "mongoose": "^8.20.3"
+    "mongoose": "^8.20.3",
+    "next": "^16.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   }
 }
