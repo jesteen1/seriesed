@@ -62,13 +62,13 @@ function movies() {
         <section className="bg-black">
             <div className="p-5 bg-black text-red-600 text-center text-captialize text-4xl font-bold tezt-glow font-stretch-90%">
 
-                <p>{decoded}</p>
+                <p>SERIES NAME:{decoded}</p>
             </div>
 
             <div>
                 <Video MovieLink={movieurl} episodename={episodeName} />
             </div>
-            <div className="flex  bg-black text-blue-500 font-bold p-5 uppercase"><p>seriesName:</p><p>{decoded}</p></div>
+            
 
             {/* Season Selector - Extract unique seasons */}
             <div className="bg-black">

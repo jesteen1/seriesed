@@ -40,6 +40,8 @@ const Video = ({ MovieLink, episodename }) => {
         (typeof window !== 'undefined' && MovieLink.includes(window.location.host))
     );
 
+    if (!MovieLink) return null;
+
     return (
         <div className="w-full max-w-6xl mx-auto p-4 lg:p-10">
             <div className="relative group overflow-hidden rounded-[2rem] bg-black shadow-[0_30px_100px_rgba(0,0,0,0.8)] border border-white/5 transition-all duration-700">
@@ -50,20 +52,7 @@ const Video = ({ MovieLink, episodename }) => {
                 <div className="relative">
                     {/* Video Player Section */}
                     <div className="aspect-video w-full bg-[#030303] flex items-center justify-center overflow-hidden">
-                        {!MovieLink ? (
-                            <div className="flex flex-col items-center gap-6 text-zinc-800">
-                                <div className="w-24 h-24 rounded-full border border-white/5 flex items-center justify-center bg-white/[0.01] backdrop-blur-sm shadow-inner">
-                                    <svg className="w-12 h-12 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600">Playback Engine Ready</p>
-                                    <p className="text-xs font-medium text-zinc-700 mt-2">Waiting for episode selection...</p>
-                                </div>
-                            </div>
-                        ) : isInternalLink ? (
+                        {isInternalLink ? (
                             <div className="flex flex-col items-center gap-6 text-center px-10">
                                 <div className="w-20 h-20 rounded-2xl bg-amber-600/10 border border-amber-600/30 flex items-center justify-center">
                                     <svg className="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
