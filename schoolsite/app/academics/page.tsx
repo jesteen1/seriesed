@@ -14,7 +14,7 @@ import Form from "../components/Form"
 import Link from "next/link"
 import TvShowIntro from "../components/Tvshow"
 
-
+import Loading from "../components/Loading"
 
 const PostPage = () => {
     const router = useRouter()
@@ -25,6 +25,7 @@ const PostPage = () => {
     const [confirm, setConfirm] = useState(false)
     const [error, setError] = useState(10);
     const [delstate, setDelstate] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const seepost = async () => {
 
@@ -61,6 +62,7 @@ const PostPage = () => {
 
         seepost()
         movepost()
+        setLoading(true)
     }, [])
 
 
@@ -112,13 +114,13 @@ const PostPage = () => {
         </div> */}
             <TvShowIntro />
             <div className="text-center text-2xl font-bold text-4xl lg:text-3xl xl:text-6xl mt-10 text-white"><p>The series </p></div>
-            <div className="flex flex-wrap gap-5 p-5">
+            {loading ? <Loading /> : <div className="flex flex-wrap gap-5 p-5">
 
                 {moviedata.map((desp) => {
                     return <Movie link={`movie/${desp.seriesName}`} key={desp._id} data_id={desp._id} uploadTimeAgo={desp.createdAt} seriesName={desp.seriesName} releaseYear={desp.year} imageUrl={desp.imageUrl} linkHref={desp.MovieLink} type={desp.type} />
                 })}
 
-            </div>
+            </div>}
         </section>
 
 
