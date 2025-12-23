@@ -33,7 +33,7 @@ const PostPage = () => {
             const res = await data.json()
             console.log(res, "fetching data")
             setData(res)
-
+            setLoading(false)
 
         }
 
@@ -48,7 +48,7 @@ const PostPage = () => {
             const res = await data.json()
             console.log(res, "fetching data")
             setMoviedata(res)
-
+setLoading(false)
         }
 
         catch (e) {
@@ -76,7 +76,7 @@ const PostPage = () => {
             console.log(data1, "fetching data")
             setError(data1.status)
             movepost()
-            setLoading(false)
+            
 
 
         }
