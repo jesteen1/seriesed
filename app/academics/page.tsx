@@ -67,26 +67,7 @@ setLoading(false)
 
 
     // console.log(data) adding data
-    const getdata = async (datas: any) => {
-    //    console.log(datas, "data")
-        try {
-            setDelstate(true)
-            const data1 = await fetch("/api/moviepost", { method: "POST", cache: "no-cache", headers: { "Content-Type": "application/json" }, body: JSON.stringify(datas) })
 
-         //   console.log(data1, "fetching data")
-            setError(data1.status)
-            movepost()
-            
-
-
-        }
-
-        catch (e) {
-
-            console.log(e, "error fetching data error")
-
-        }
-    }
 
 
     return (

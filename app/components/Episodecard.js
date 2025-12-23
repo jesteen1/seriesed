@@ -32,8 +32,7 @@ const EpisodeCard = ({
     movieurl = "fff",
     senddata,
     createdAt,
-    deldata,
-    updatedatas
+ 
 }) => {
     return (
     selectseries == series ? (

@@ -32,7 +32,8 @@ const Movie = ({
     updatedatas,
     type = "",
     link = "",
-    description = ""
+    description = "",
+    linkHref=""
 }) => {
     return (
         <div className="w-80 h-[480px] relative group">
