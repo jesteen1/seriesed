@@ -1,55 +1,94 @@
 "use client";
+import { useState, useEffect } from "react";
 
 export default function Loading() {
+    const [showExit, setShowExit] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setShowExit(true), 4000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!isVisible) return null;
+
     return (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/80 backdrop-blur-2xl">
-            {/* Background Cinematic Elements */}
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/10 blur-[120px] rounded-full animate-pulse" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-600/5 blur-[100px] rounded-full" />
+        <div className="fixed inset-0 z-10000 flex flex-col items-center justify-center bg-black/95 backdrop-blur-3xl transition-opacity duration-1000">
+            {/* Cinematic Pulse Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/10 blur-[150px] rounded-full animate-pulse" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full delay-700 animate-pulse" />
+            </div>
+
+            {/* Spider-Sense Lines (SVG) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none">
+                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                    <div
+                        key={angle}
+                        className="absolute top-1/2 left-1/2 w-1.5 h-12 bg-linear-to-t from-red-600 to-transparent rounded-full origin-bottom opacity-0 animate-[spiderSense_2s_infinite]"
+                        style={{
+                            transform: `translate(-50%, -100%) rotate(${angle}deg) translateY(-40px)`,
+                            animationDelay: `${angle * 0.05}s`
+                        }}
+                    />
+                ))}
             </div>
 
             <div className="relative z-10 flex flex-col items-center">
-                {/* Spider-Sense Pulsing Rings */}
-                <div className="relative w-24 h-24 mb-10">
-                    {/* Animated Glow Rings */}
-                    <div className="absolute inset-0 border-2 border-red-600 rounded-full animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite] opacity-70" />
-                    <div className="absolute inset-2 border-2 border-red-500 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-40 delay-300" />
+                {/* Central Glitch Logo */}
+                <div className="relative w-24 h-24 mb-12 group">
+                    <div className="absolute inset-0 bg-red-600 rounded-2xl blur-xl opacity-40 group-hover:opacity-80 transition-opacity duration-500 animate-pulse" />
+                    <div className="relative w-full h-full bg-linear-to-br from-red-600 to-red-800 rounded-2xl flex items-center justify-center font-black text-white text-4xl shadow-2xl -skew-x-12 hover:skew-x-0 transition-transform duration-500">
+                        S
+                    </div>
+                    {/* Glitch Overlay */}
+                    <div className="absolute -inset-1 bg-blue-600/30 rounded-2xl animate-pulse blur-sm -z-10 mix-blend-screen" />
+                </div>
 
-                    {/* Central Logo Indicator */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-[0_0_30px_rgba(220,38,38,0.8)] animate-bounce">
-                            S
+                {/* Loading Text with Glitch Effect */}
+                <div className="text-center">
+                    <h2 className="text-2xl font-black uppercase italic tracking-[0.5em] text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                        Syncing <span className="text-red-600 animate-pulse">Multiverse</span>
+                    </h2>
+
+                    <div className="flex items-center justify-center gap-3">
+                        <div className="h-1 w-48 bg-zinc-800 rounded-full overflow-hidden">
+                            <div className="h-full bg-red-600 w-1/2 animate-[loadingBar_2s_infinite_ease-in-out]" />
                         </div>
                     </div>
                 </div>
-
-                {/* Loading Text */}
-                <div className="text-center">
-                    <h2 className="text-xl font-black uppercase italic tracking-[0.3em] text-white mb-2 animate-pulse">
-                        Synchronizing <span className="text-red-600">Multiverse</span>
-                    </h2>
-                    <div className="flex items-center justify-center gap-1.5">
-                        {[0, 1, 2].map((i) => (
-                            <div
-                                key={i}
-                                className="w-1.5 h-1.5 bg-red-600 rounded-full animate-bounce"
-                                style={{ animationDelay: `${i * 0.15}s` }}
-                            />
-                        ))}
-                    </div>
-                </div>
             </div>
 
-            {/* Decorative Text */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600">
-                    SeriesFlix Engine v1.0 • Peter Parker protocol active
+            {/* Fallback Exit Button - Only appears if loading is stuck */}
+            {showExit && (
+                <button
+                    onClick={() => setIsVisible(false)}
+                    className="absolute bottom-24 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-[11px] font-black uppercase tracking-[0.3em] text-zinc-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 animate-bounce"
+                >
+                    Proceed Anyway
+                </button>
+            )}
+
+            {/* Spider-Flix Tech Signature */}
+            <div className="absolute bottom-10 flex items-center gap-4 opacity-30">
+                <div className="h-px w-12 bg-red-600" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-white">
+                    Protocol: Spider-Web v2.4
                 </span>
+                <div className="h-px w-12 bg-red-600" />
             </div>
 
-            {/* Noise effect for texture */}
-            <div className="absolute inset-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+            <style jsx global>{`
+        @keyframes spiderSense {
+          0% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--rotation)) translateY(-40px) scaleY(0.5); }
+          50% { opacity: 1; transform: translate(-50%, -100%) rotate(var(--rotation)) translateY(-60px) scaleY(1.2); }
+          100% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--rotation)) translateY(-70px) scaleY(0.5); }
+        }
+        @keyframes loadingBar {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+      `}</style>
         </div>
     );
 }

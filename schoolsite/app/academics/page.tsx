@@ -25,7 +25,7 @@ const PostPage = () => {
     const [confirm, setConfirm] = useState(false)
     const [error, setError] = useState(10);
     const [delstate, setDelstate] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const seepost = async () => {
 
@@ -62,7 +62,7 @@ const PostPage = () => {
 
         seepost()
         movepost()
-        setLoading(true)
+        setLoading(false)
     }, [])
 
 
@@ -121,6 +121,7 @@ const PostPage = () => {
                 })}
 
             </div>}
+            <Loading />
         </section>
 
 
