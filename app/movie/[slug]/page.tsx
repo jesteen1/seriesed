@@ -8,19 +8,19 @@ import Video from "../../components/Video";
 import { useRouter } from "next/navigation";
 import Loading from "../../components/Loading";
 function movies() {
-    const router=useRouter()
+    const router = useRouter()
     const [moviedata, setMoviedata] = useState([])
     const params = useParams();
     const [chSeries, Setcheries] = useState("")
     const [data_id, setData_id] = useState(null)
     const [movieurl, setMovieurl] = useState("")
     const [episodeName, setEpisodeName] = useState("")
-    const decoded = decodeURIComponent(params.slug);
+    const decoded = decodeURIComponent(String(params.slug));
     const encoded = encodeURIComponent(decoded);
     const [confirmation, setConfirmation] = useState(false);
     const [delstate, setDelstate] = useState(false);
-      const [loading, setLoading] = useState(true)
- //   console.log(encoded, "encoded")
+    const [loading, setLoading] = useState(true)
+    //   console.log(encoded, "encoded")
     const movepost = async () => {
 
         try {
@@ -43,21 +43,21 @@ function movies() {
         movepost()
     }, [])
     const selectedSeason = (season: any) => {
-       // console.log(season, "season")
+        // console.log(season, "season")
         const filteredData = moviedata.filter((data: any) => data.season == season)
-       // console.log(filteredData, "moviedata")
+        // console.log(filteredData, "moviedata")
         Setcheries(season)
     }
-    const getdata = (url:any,episodeName:string) => {
-    
-      //  console.log(url, "data[0]")
-       // console.log(episodeName, "data[1]")
+    const getdata = (url: any, episodeName: string) => {
+
+        //  console.log(url, "data[0]")
+        // console.log(episodeName, "data[1]")
         setMovieurl(url)
         setEpisodeName(episodeName)
     }
 
 
-   
+
     return (
         <section className="bg-black">
             <div className="p-5 bg-black text-red-600 text-center text-captialize text-4xl font-bold tezt-glow font-stretch-90%">
@@ -81,12 +81,12 @@ function movies() {
             <div className="text-center text-2xl bg-black p-5 font-bold text-4xl lg:text-3xl xl:text-6xl  text-white"><p>The episodes </p></div>
             <div className="flex flex-wrap gap-5 p-5">
                 {moviedata.map((desp: any) => {
-                    return <EpisodeCard key={desp._id} id={desp._id}  senddata={getdata} selectseries={chSeries} series={desp.season} episodeName={desp.episodename} imageUrl={desp.imageUrl} movieurl={desp.MovieLink} />
+                    return <EpisodeCard key={desp._id} id={desp._id} senddata={getdata} selectseries={chSeries} series={desp.season} episodeName={desp.episodename} imageUrl={desp.imageUrl} createdAt={desp.createdAt} movieurl={desp.MovieLink} />
                 })}
 
             </div>
             {loading ? <Loading /> : null}
-                    
+
         </section>
     )
 }
