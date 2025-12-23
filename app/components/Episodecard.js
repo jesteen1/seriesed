@@ -31,7 +31,7 @@ const EpisodeCard = ({
     selectseries = "Series 1",
     movieurl = "fff",
     senddata,
-    createdAt,
+    createdAt="",
  
 }) => {
     return (
