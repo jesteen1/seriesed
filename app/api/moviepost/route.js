@@ -57,7 +57,7 @@ export const DELETE = async (request) => {
         if (!moviedata) return NextResponse.json({ error: "Form data not provided " }, { status: 406 })
         else {
 
-            console.log(moviedata)
+         //   console.log(moviedata)
             const deldata = await MovieModel.deleteOne({ _id: moviedata })
             return NextResponse.json({ status: 200 })
 

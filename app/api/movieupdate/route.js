@@ -14,7 +14,7 @@ export const GET = async (req, res) => {
 
 
         const Movie = await MovieModel.find({ "_id": id })
-        console.log(Movie)
+       // console.log(Movie)
 
         return new Response(JSON.stringify(Movie), { status: 200 })
 

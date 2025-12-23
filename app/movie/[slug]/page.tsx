@@ -6,6 +6,7 @@ import EpisodeCard from "../../components/Episodecard";
 import SeasonCard from "../../components/Seasonselect";
 import Video from "../../components/Video";
 import { useRouter } from "next/navigation";
+import Loading from "../../components/Loading";
 function movies() {
     const router=useRouter()
     const [moviedata, setMoviedata] = useState([])
@@ -18,7 +19,8 @@ function movies() {
     const encoded = encodeURIComponent(decoded);
     const [confirmation, setConfirmation] = useState(false);
     const [delstate, setDelstate] = useState(false);
-    console.log(encoded, "encoded")
+      const [loading, setLoading] = useState(true)
+ //   console.log(encoded, "encoded")
     const movepost = async () => {
 
         try {
@@ -27,6 +29,7 @@ function movies() {
             // console.log(res, "fetching data")
             const filteredData = res.filter((data: any) => data.season == "SEASON 1")
             setMoviedata(res)
+            setLoading(false)
 
         }
 
@@ -40,15 +43,15 @@ function movies() {
         movepost()
     }, [])
     const selectedSeason = (season: any) => {
-        console.log(season, "season")
+       // console.log(season, "season")
         const filteredData = moviedata.filter((data: any) => data.season == season)
-        console.log(filteredData, "moviedata")
+       // console.log(filteredData, "moviedata")
         Setcheries(season)
     }
     const getdata = (url:any,episodeName:string) => {
     
-        console.log(url, "data[0]")
-        console.log(episodeName, "data[1]")
+      //  console.log(url, "data[0]")
+       // console.log(episodeName, "data[1]")
         setMovieurl(url)
         setEpisodeName(episodeName)
     }
@@ -82,6 +85,7 @@ function movies() {
                 })}
 
             </div>
+            {loading ? <Loading /> : null}
                     
         </section>
     )
