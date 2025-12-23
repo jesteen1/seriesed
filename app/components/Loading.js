@@ -73,7 +73,7 @@ export default function Loading() {
             <div className="absolute bottom-10 flex items-center gap-4 opacity-30">
                 <div className="h-px w-12 bg-red-600" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-white">
-                    Protocol: Spider-Web v2.4
+                    Protocol: Series TO play 
                 </span>
                 <div className="h-px w-12 bg-red-600" />
             </div>
