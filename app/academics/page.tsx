@@ -98,7 +98,7 @@ setLoading(false)
     <div className="flex flex-wrap gap-5 p-5">
 
                 {moviedata.map((desp:any) => {
-                    return <Movie link={`movie/${desp.seriesName}`} key={desp._id} data_id={desp._id} uploadTimeAgo={desp.createdAt} seriesName={desp.seriesName} releaseYear={desp.year} imageUrl={desp.imageUrl} linkHref={desp.MovieLink} description={desp.episodename} type={desp.type} />
+                    return <Movie link={`movie/${desp.seriesName}`} key={desp._id} data_id={desp._id} uploadTimeAgo={desp.createdAt} seriesName={desp.seriesName} releaseYear={desp.year} imageUrl={desp.imageUrl} description={desp.episodename} type={desp.type} />
                 })}
 
             </div>

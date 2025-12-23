@@ -28,12 +28,11 @@ const Movie = ({
     imageUrl = "",
     uploadTimeAgo = "2025-12-20T16:19:28.266Z",
     data_id = "",
-    deldata,
-    updatedatas,
-    type = "",
+    type="",
+    
     link = "",
     description = "",
-    linkHref=""
+   
 }) => {
     return (
         <div className="w-80 h-[480px] relative group">
