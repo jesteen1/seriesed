@@ -30,9 +30,10 @@ export default function SeasonSelect({ onSeasonChange, defaultSeason = '', seaso
                
                 {isArray ? (
                     season.map((item, index) => (
+                        item?
                         <option  key={index} value={item}>
                             {item}
-                        </option>
+                        </option>:null
                     ))
                 ) : (
                     <option value={season}>{season}</option>
