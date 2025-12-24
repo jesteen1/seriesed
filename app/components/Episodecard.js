@@ -22,7 +22,12 @@ function timeAgo(date) {
     const years = Math.floor(days / 365);
     return `${years} YEARS AGO`;
 }
-
+const scrolltoTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+}
 const EpisodeCard = ({
     episodeName = "",
     id = "",
@@ -43,7 +48,7 @@ const EpisodeCard = ({
                 >
                     {/* Image Section */}
                     <div
-                        onClick={(e) => senddata && senddata(movieurl, episodeName)}
+                        onClick={(e) =>{ senddata && senddata(movieurl, episodeName),scrolltoTop()}}
                         className="relative aspect-square w-full"
                     >
                         {imageUrl ? (
