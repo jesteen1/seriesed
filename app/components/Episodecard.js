@@ -85,7 +85,8 @@ const EpisodeCard = ({
                             className="text-lg font-bold text-[#f82b2b] uppercase  "
                             title={episodeName}
                         >
-                            {episodeName || "Unnamed Episode"}
+                            { episodeName || "Unnamed Episode"}
+                            {episodeName.length>15? <br />:null}
                         </h3>
 
                         <div className="flex items-center gap-2">
