@@ -80,9 +80,9 @@ const EpisodeCard = ({
                     </div>
 
                     {/* Content Section */}
-                    <div className="p-5 flex flex-col gap-2">
+                    <div className="p-5  flex flex-col gap-2">  
                         <h3
-                            className="text-[22px] font-black text-[#f82b2b] uppercase tracking-tighter leading-tight line-clamp-1"
+                            className="text-lg font-bold text-[#f82b2b] uppercase  "
                             title={episodeName}
                         >
                             {episodeName || "Unnamed Episode"}
