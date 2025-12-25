@@ -89,7 +89,7 @@ const EpisodeCard = ({
                          
                             
                         </h3>
-  {episodeName.length<=23? <br />:null}
+  {episodeName.length<=28? <br />:null}
                         <div className="flex items-center gap-2">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#f82b2b] animate-pulse"></div>
                             <p className="text-[11px] font-black text-zinc-500 tracking-widest uppercase">
