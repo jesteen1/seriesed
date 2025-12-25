@@ -86,7 +86,8 @@ const EpisodeCard = ({
                             title={episodeName}
                         >
                             { episodeName || "Unnamed Episode"}
-                            {episodeName.length>15? <br />:null}
+                         
+                            
                         </h3>
 
                         <div className="flex items-center gap-2">
@@ -95,6 +96,7 @@ const EpisodeCard = ({
                                 {timeAgo(createdAt)}
                             </p>
                         </div>
+                           {episodeName.length>15? <br />:null}
                     </div>
 
                     {/* Action Footer */}
