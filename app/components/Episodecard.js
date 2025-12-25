@@ -96,7 +96,7 @@ const EpisodeCard = ({
                                 {timeAgo(createdAt)}
                             </p>
                         </div>
-                           {episodeName.length<15? <br />:null}
+                           {episodeName.length<=23? <br />:null}
                     </div>
 
                     {/* Action Footer */}
