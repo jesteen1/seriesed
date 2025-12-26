@@ -94,14 +94,33 @@ setLoading(false)
 
         </div> */}
             <TvShowIntro />
+            <div className="text-white ">
+                <p className="hidden">ads display</p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1969202616784990"
+   ></script>
+
+<ins className="adsbygoogle inline-block w-[728] h-[90]"
+     
+     data-ad-client="ca-pub-1969202616784990"
+     data-ad-slot="3989466372"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
             <div className="text-center text-2xl font-bold text-4xl lg:text-3xl xl:text-6xl mt-10 text-white"><p>The series </p></div>
-    <div className="flex flex-wrap gap-5 p-5">
+    
+
+    
+    <div className="flex flex-wrap gap-5 p-5 ">
 
                 {moviedata.map((desp:any) => {
                     return <Movie link={`movie/${desp.seriesName}`} key={desp._id} data_id={desp._id} uploadTimeAgo={desp.createdAt} seriesName={desp.seriesName} releaseYear={desp.year} imageUrl={desp.imageUrl} description={desp.episodename} type={desp.type} />
                 })}
+                
 
             </div>
+      
+
               {loading ? <Loading /> : null}
              
         </section>
