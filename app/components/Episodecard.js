@@ -83,7 +83,7 @@ const EpisodeCard = ({
                     {/* Content Section */}
                     <div className="p-5 flex flex-col gap-2 relative">
                         <h3
-                            className="text-lg font-bold text-[#f82b2b] uppercase  "
+                            className="text-lg font-bold text-[#f82b2b] uppercase"
                             title={episodeName}
                         >
                             {episodeName || "Unnamed Episode"}
