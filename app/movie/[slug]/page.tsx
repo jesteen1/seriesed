@@ -78,7 +78,7 @@ function movies() {
                 />
             </div>
 
-            <div className="text-center text-2xl bg-black p-5 font-bold text-4xl lg:text-3xl xl:text-6xl  text-white"><p>The episodes </p></div>
+            <div className="text-center  bg-black p-5 text-2xl font-bold text-4xl lg:text-3xl xl:text-6xl  text-white"><p>The episodes </p></div>
             <div className="flex flex-wrap gap-5 p-5">
                 {moviedata.map((desp:any) => {
                     return <EpisodeCard key={desp._id}  id={desp._id} descri={desp.describe}  senddata={getdata} selectseries={chSeries} series={desp.season} episodeName={desp.episodename} imageUrl={desp.imageUrl} createdAt={desp.createdAt} movieurl={desp.MovieLink} />
