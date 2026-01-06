@@ -12,6 +12,7 @@ const movieSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
+    describe:{type:String },
     type: { type: String, required: true },
 })
 
