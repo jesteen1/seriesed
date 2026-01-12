@@ -32,6 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1969202616784990"
+          crossOrigin="anonymous"></script>
+      </head>
       <body
         className={`${geistSans.variable} bg-black  ${geistMono.variable} antialiased  flex flex-col bg-black text-white`}
       >
@@ -39,7 +43,7 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
-        
+
       </body>
     </html>
   );
