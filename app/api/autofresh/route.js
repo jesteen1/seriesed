@@ -1,11 +1,10 @@
-
 import { NextResponse } from "next/server";
 import connect from "./../.././../db";
 import PostModel from "../../../models/post";
 import MovieModel from "../../../models/series";
 import { Console } from "console";
 import { NextRequest } from "next/server";
-import { redirect } from "next/navigation";
+
 export const GET = async (req) => {
     try {
 
@@ -13,17 +12,16 @@ export const GET = async (req) => {
         const { searchParams } = new URL(req.url);
         
         // console.log(searchParams)
-        const changestream=MovieModel.watch()
+       
+       
+      
+       const changestream=MovieModel.watch()
        changestream.on("change",(ch)=>{
         console.log(ch)
-        redirect(searchParams)
-       
+        
        })
-       
-        const Movie = await MovieModel.find({seriesName:searchParams.get("name"),type:"File"})
-    
        // console.log(Movie)
-        return new NextResponse(JSON.stringify(Movie), { status: 200 })
+        return new NextResponse(ch, { status: 200 })
     } catch (e) {
         console.log(e,"error")
         return new NextResponse("Internal Server Error1" + e, { status: 404 })

@@ -1,27 +1,29 @@
 function timeAgo(date) {
-    if (!date) return "";
     const seconds = Math.floor((Date.now() - new Date(date)) / 1000);
 
-    if (seconds < 60) return "JUST NOW";
+    if (seconds < 60) return "just now";
 
     const minutes = Math.floor(seconds / 60);
-    if (minutes < 60) return `${minutes} MINS AGO`;
+    if (minutes < 60) return minutes + " minutes ago";
 
     const hours = Math.floor(minutes / 60);
-    if (hours < 24) return `${hours} HOURS AGO`;
+    if (hours < 24) return hours + " hours ago";
 
     const days = Math.floor(hours / 24);
-    if (days < 7) return `${days} DAYS AGO`;
+    if (days < 7) return days + " days ago";
 
     const weeks = Math.floor(days / 7);
-    if (weeks < 4) return `${weeks} WEEKS AGO`;
+    if (days < 30) return weeks + " weeks ago"; // < 30 days, never month
 
     const months = Math.floor(days / 30);
-    if (months < 12) return `${months} MONTHS AGO`;
+    if (days < 365) return months + " months ago"; // only after 30 days
 
     const years = Math.floor(days / 365);
-    return `${years} YEARS AGO`;
+    return years + " years ago";
 }
+
+
+
 const scrolltoTop = () => {
     window.scrollTo({
         top: 0,

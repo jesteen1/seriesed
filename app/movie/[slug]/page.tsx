@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import EpisodeCard from "../../components/Episodecard";
 import SeasonCard from "../../components/Seasonselect";
 import Video from "../../components/Video";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";;
 import Loading from "../../components/Loading";
 function movies() {
     const router = useRouter()
@@ -28,6 +28,7 @@ function movies() {
             const res = await data.json()
             // console.log(res, "fetching data")
             const filteredData = res.filter((data: any) => data.season == "SEASON 1")
+           
             setMoviedata(res)
             setLoading(false)
 

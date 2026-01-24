@@ -14,14 +14,16 @@ function timeAgo(date) {
     if (days < 7) return days + " days ago";
 
     const weeks = Math.floor(days / 7);
-    if (weeks < 4) return weeks + " weeks ago";
+    if (days < 30) return weeks + " weeks ago"; // < 30 days, never month
 
     const months = Math.floor(days / 30);
-    if (months < 12) return months + " months ago";
+    if (days < 365) return months + " months ago"; // only after 30 days
 
     const years = Math.floor(days / 365);
     return years + " years ago";
 }
+
+
 const Movie = ({
     seriesName = "",
     releaseYear = "2024",
