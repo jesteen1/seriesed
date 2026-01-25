@@ -7,6 +7,8 @@ import SeasonCard from "../../components/Seasonselect";
 import Video from "../../components/Video";
 import {useRouter} from "next/navigation";;
 import Loading from "../../components/Loading";
+
+
 function movies() {
     const router = useRouter()
     const [moviedata, setMoviedata] = useState([])
@@ -21,6 +23,9 @@ function movies() {
     const [delstate, setDelstate] = useState(false);
     const [loading, setLoading] = useState(true)
     //   console.log(encoded, "encoded")
+
+
+
     const movepost = async () => {
 
         try {
@@ -42,6 +47,15 @@ function movies() {
     useEffect(() => {
         Setcheries("SEASON 1")
         movepost()
+        const es = new EventSource("/api/autofresh/")
+
+    es.onmessage = (e) => {
+      const change = JSON.parse(e.data)
+      console.log("DB changed:", change)
+      window.location.reload()
+    }
+
+    return () => es.close()
     }, [])
     const selectedSeason = (season: any) => {
         // console.log(season, "season")

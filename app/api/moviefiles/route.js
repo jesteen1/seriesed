@@ -6,6 +6,9 @@ import MovieModel from "../../../models/series";
 import { Console } from "console";
 import { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
+
+
+
 export const GET = async (req) => {
     try {
 
@@ -13,12 +16,11 @@ export const GET = async (req) => {
         const { searchParams } = new URL(req.url);
         
         // console.log(searchParams)
+  
+// now io is real
+
         const changestream=MovieModel.watch()
-       changestream.on("change",(ch)=>{
-        console.log(ch)
-        redirect(searchParams)
        
-       })
        
         const Movie = await MovieModel.find({seriesName:searchParams.get("name"),type:"File"})
     
