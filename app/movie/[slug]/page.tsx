@@ -47,7 +47,7 @@ function movies() {
     useEffect(() => {
         Setcheries("SEASON 1")
         movepost()
-        const es = new EventSource("/api/autofresh/")
+        const es = new EventSource("/api/autofresh/" )
 
     es.onmessage = (e) => {
       const change = JSON.parse(e.data)
@@ -55,7 +55,7 @@ function movies() {
       window.location.reload()
     }
 
-    return () => es.close()
+    
     }, [])
     const selectedSeason = (season: any) => {
         // console.log(season, "season")
