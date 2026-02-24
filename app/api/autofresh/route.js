@@ -12,7 +12,7 @@ import { createServer } from "http"
 
 
 export async function GET() {
-  const encoder = new TextEncoder()
+  
 const changestream=MovieModel.watch()
   // const stream = new ReadableStream({
   //   start(controller) {
