@@ -83,7 +83,7 @@ function movies() {
             <div>
                 <Video MovieLink={movieurl} episodename={episodeName} />
                  <div className="p-5 flex justify-center">
-                    {movieurl?<div className="bg-red-500 p-5 text-center text-white w-32"><a target="blank" href={"https://mega.nz/file/"+movieurl.split("/")[4]}>Download</a></div>:null}
+                    {movieurl?<div className="bg-red-500 p-5 text-center text-white w-32"><a target="blank" href={"https://mega.nz/file/"+movieurl[0].split("/")[4]}>Download</a></div>:null}
                 
             </div>
             </div>

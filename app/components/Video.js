@@ -52,7 +52,7 @@ const Video = ({ MovieLink, episodename }) => {
                 <div className="relative">
                     {/* Video Player Section */}
                     <div className="aspect-video w-full bg-[#030303] flex items-center justify-center overflow-hidden">
-                        {isInternalLink ? (
+                        { isInternalLink ? (
                             <div className="flex flex-col items-center gap-6 text-center px-10">
                                 <div className="w-20 h-20 rounded-2xl bg-amber-600/10 border border-amber-600/30 flex items-center justify-center">
                                     <svg className="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ const Video = ({ MovieLink, episodename }) => {
                             </div>
                         ) : playerMode === 'video' ? (
                             <video
-                                key={`video-${MovieLink}`}
+                                key={`video-${MovieLink[0]}`}
                                 className="w-full h-full object-contain shadow-2xl"
                                 src={MovieLink}
                                 controls
@@ -77,8 +77,22 @@ const Video = ({ MovieLink, episodename }) => {
                                 controlsList="nodownload"
                             >
                                 Your browser does not support the video tag.
-                            </video>
-                        ) : playerMode === 'iframe' ? (
+                            </video>)
+                        : playerMode === 'torrent' ? (
+                            <iframe
+                                key={`torrent-${MovieLink[1]}`}
+                                className="w-full h-full object-contain shadow-2xl"
+                                src={MovieLink}
+                                controls
+                                autoPlay
+                                onError={handleVideoError}
+                                controlsList="nodownload"
+                            >
+                                Your browser does not support the video tag.
+                            </iframe>
+                        )
+                        
+                        : playerMode === 'iframe' ? (
                             <div className="w-full h-full relative group/iframe">
                                 <iframe
                                     key={`iframe-${MovieLink}`}
@@ -89,6 +103,7 @@ const Video = ({ MovieLink, episodename }) => {
                                     title={episodename}
                                     allow="autoplay; encrypted-media"
                                 />
+                                
                                 <button
                                     onClick={handleIframeError}
                                     className="absolute bottom-4 right-4 px-4 py-2 bg-black/50 hover:bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-lg border border-white/10 opacity-0 group-hover/iframe:opacity-100 transition-all duration-300 backdrop-blur-md"
@@ -116,8 +131,14 @@ const Video = ({ MovieLink, episodename }) => {
                                     >
                                         Retry Primary
                                     </button>
+                                       <button
+                                        onClick={() => setPlayerMode('torrent')}
+                                        className="px-6 py-2 bg-white text-black text-xs font-black uppercase tracking-widest rounded-full hover:bg-zinc-200 transition-all active:scale-95"
+                                    >
+                                        torrent
+                                    </button>
                                     <a
-                                        href={MovieLink}
+                                        href={MovieLink[0]}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="px-6 py-2 bg-zinc-800 text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-zinc-700 transition-all active:scale-95 border border-white/10"
