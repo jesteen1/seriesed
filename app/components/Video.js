@@ -131,12 +131,12 @@ const Video = ({ MovieLink, episodename }) => {
                                     >
                                         Retry Primary
                                     </button>
-                                       <button
+                                      {MovieLink[1]?(<button
                                         onClick={() => setPlayerMode('torrent')}
                                         className="px-6 py-2 bg-white text-black text-xs font-black uppercase tracking-widest rounded-full hover:bg-zinc-200 transition-all active:scale-95"
                                     >
                                         torrent
-                                    </button>
+                                    </button>):null} 
                                     <a
                                         href={MovieLink[0]}
                                         target="_blank"
