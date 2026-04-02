@@ -47,13 +47,7 @@ function movies() {
     useEffect(() => {
         Setcheries("SEASON 1")
         movepost()
-        const es = new EventSource("/api/autofresh/" )
-
-    es.onmessage = (e) => {
-      const change = JSON.parse(e.data)
-      console.log("DB changed:", change)
-      window.location.reload()
-    }
+   
 
     
     }, [])
@@ -71,7 +65,7 @@ function movies() {
         setEpisodeName(episodeName)
     }
 
-
+    const links=movieurl.split(",")
 
     return (
         <section className="bg-black">
@@ -82,8 +76,9 @@ function movies() {
 
             <div>
                 <Video MovieLink={movieurl} episodename={episodeName} />
+            
                  <div className="p-5 flex justify-center">
-                    {movieurl?<div className="bg-red-500 p-5 text-center text-white w-32"><a target="blank" href={"https://mega.nz/file/"+movieurl[0].split("/")[4]}>Download</a></div>:null}
+                    {movieurl?<div className="bg-red-500 p-5 text-center text-white w-32"><a target="blank" href={"https://mega.nz/file/"+links[0].split("/")[4]}>Download</a></div>:null}
                 
             </div>
             </div>
