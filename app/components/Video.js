@@ -100,13 +100,8 @@ const Video = ({ MovieLink, episodename }) => {
                             <div className='w-full h-full relative group'>
                                 
 
-                            <div
-                        id="webtor-player"
-            ref={playerRef}
-            className="w-full h-full object-contain shadow-2xl"
-
-    />
-    {streamplayer() }
+                          <video controls className='w-full h-full object-contain shadow-2xl' src={`/api/stream?magnet=${encodeURIComponent(links[2])}`}></video>
+    
 
                             
                             
