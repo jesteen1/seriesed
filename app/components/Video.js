@@ -1,20 +1,52 @@
 "use client";
 
 
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect ,useRef} from 'react';
 
 const Video = ({ MovieLink, episodename }) => {
     const [playerMode, setPlayerMode] = useState('video'); // 'video', 'iframe', 'failed'
    const  links=MovieLink.split(",")
+    const playerRef = useRef(null);
     // Reset player mode whenever the movie link changes
+    const streamplayer=()=>{
+
+ const existingScript = document.getElementById('webtor-sdk');
+        
+         if (!existingScript) {
+           const script = document.createElement('script');
+           script.src = 'https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js';
+           script.id = 'webtor-sdk';
+           script.async = true;
+           script.charset = 'utf-8';
+           document.body.appendChild(script);
+         }
+     
+         // Push config to webtor queue
+         window.webtor = window.webtor || [];
+         window.webtor.push({
+           id: 'webtor-player',
+           magnet: links[2],   // 👈 your magnet/torrent link
+           width: '100%',
+           height: '100%',
+           
+           controls: true,
+         });
+     
+}
     useEffect(() => {
         if (!links[0]) {
             setPlayerMode('iframe');
             return;
         }
 
-        // Check if the link looks like an iframe-only link (e.g., doesn't end in a video extension)
-       
+    
+         // Cleanup on unmount
+        
+             // Check if the link looks like an iframe-only link (e.g., doesn't end in a video extension)
+            
+
+ 
 
        
     }, [links[0]]);
@@ -64,20 +96,19 @@ const Video = ({ MovieLink, episodename }) => {
                                 </div>
                             </div>
                         ) : playerMode === 'video' ? (
-                            <div>
+
+                            <div className='w-full h-full relative group'>
                                 
 
-                            <video
-                                key={`video-${links[0]}`}
-                                className="w-full h-full object-contain shadow-2xl"
-                                src={links[0]}
-                                controls
-                                
-                                onError={handleVideoError}
-                                controlsList="nodownload"
-                            >
-                            </video>
-                            <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+                            <div
+                        id="webtor-player"
+            ref={playerRef}
+            className="w-full h-full object-contain shadow-2xl"
+
+    />
+    {streamplayer() }
+
+                            
                             
                                                   <button
                                     onClick={handleIframeError}
@@ -156,7 +187,7 @@ const Video = ({ MovieLink, episodename }) => {
                                         torrent
                                     </button>):null} 
                                     {links[2]?(<button
-                                        onClick={() => setPlayerMode('video')}
+                                        onClick={() => setPlayerMode('video') }
                                         className="px-6 py-2 bg-white text-black text-xs font-black uppercase tracking-widest rounded-full hover:bg-zinc-200 transition-all active:scale-95"
                                     >
                                         video
