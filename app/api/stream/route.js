@@ -1,7 +1,7 @@
-/ app/api/stream/route.js
+/// app/api/stream/route.js
 import WebTorrent from 'webtorrent';
 import { Readable } from 'stream';
- 
+
 // Single shared client across requests
 let client = null;
  
